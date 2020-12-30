@@ -1,0 +1,233 @@
+/**
+ * Sony TV Web Page Remote
+ * CSS3 and uses flexbox for columns/row table-like button layout.
+ */
+
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.columns .one-fourth-item {
+  flex-basis: 21%; /* 1/4 * (100 - margin-left*4 - margin-right*4) */
+  margin: 5px 2px; /* Add some space around left/right edges of each item */
+}
+
+.columns .one-third-item {
+  flex-basis: 29%; /* 1/3 * (100 - margin-left*3 - margin-right*3) */
+  margin: 5px 2px; /* Add some space around left/right edges of each item */
+}
+
+.columns .one-half-item {
+  flex-basis: 47%; /* 1/2 * (100 - margin-left*2 - margin-right*2) */
+  margin: 5px 2px; /* Add some space around left/right edges of each item */
+}
+
+label textarea {
+  vertical-align: middle;
+}
+
+body {
+  background: #ECECEC;
+  margin: 20px 5px;
+  color: #333;
+  max-width: 35em;
+  margin: 0 auto;
+}
+
+#tab-buttons-content {
+  margin-left: 3px;
+}
+
+button {
+  /* this also helps on narrow width displays when the buttons are stacked */
+  display: inline-block;
+  text-decoration: none;
+}
+
+button:focus,
+button:hover {
+  background: #aca; /* For browsers that do not support gradients */
+  background: linear-gradient(#aca, #afa);
+}
+
+
+/**
+ * Each tv command should be displayed in larger size.
+ */
+
+.tv-command {
+  background: #ececec;
+  border-radius: 15px;
+  padding: 20px 0;
+  display: inline-block;
+  font-size: 1.0em;
+  font-weight: bold;
+  text-decoration: none;
+  /* this also helps on narrow width displays when the buttons are stacked */
+  width: 6em; /* default width */
+  background: #333; /* For browsers that do not support gradients */
+  color: white;
+  /* background: linear-gradient(#aac, #aaf); */
+}
+
+.btn_input {
+  background: #333;
+  border-radius: 6em;
+  color: white;
+}
+
+.btn_power {
+  background: #01C079;
+  border-radius: 6em;
+  color: white;
+}
+
+.tv-command i {
+  font-style: normal;
+}
+
+.tv-command:focus,
+.tv-command:hover {
+  background: #aca; /* For browsers that do not support gradients */
+  background: linear-gradient(#aca, #afa);
+}
+
+/* Custom command sequence input box */
+#tv-command-input fieldset {
+  border-color: #eef;
+}
+
+/* override browser fieldset user agent stylesheet CSS rules */
+fieldset {
+  padding: 1px;
+  margin: 0px;
+}
+
+#tv-command-input input {
+  font-size: 1.1em;
+  font-weight: bold;
+  width: 5em;
+  color: #00f;
+  background-color: #eef;
+}
+#tv-command-input legend {
+  color: #00f;
+}
+
+#tv-command-input button {
+  margin-top: 0px;
+  padding: 10px 0;
+  max-width: 6em;
+}
+
+/* Tabs */
+
+ul.tabs-navigation {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #ccc;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: 1px solid black;
+}
+
+.tabs-navigation li {
+  float: left;
+  border-right: 1px solid black;
+}
+
+.tabs-navigation li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+/* Javascript adds this class to highlight active tab link */
+
+.tab-color-active {
+  background-color: #5B5;
+}
+
+
+/* Change the link color to on hover */
+
+.tabs-navigation li a:focus,
+.tabs-navigation li a:hover {
+  background-color: #292;
+}
+
+/* GetRemoteControllerInfo command and output */
+#controller-info {
+  padding: 10px 20px;
+  border: 1px solid black;
+}
+
+/* Popup to provide feedback after a click */
+/* The actual popup (appears on top) */
+.popup-text {
+  /* visibilty is controlled by adding a hide-initial to html.
+   * That allows using the hide class below to fade out the popup
+   * Javascript code removes hide and hide-initial when it wants to show
+   * text in this popup, and adds hide when it wants to remove it.
+   */
+  background-color: #292;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  z-index: 1;
+  font-size: 1.3em;
+
+  padding: 1em 2em;
+
+  /* center this text in the middle of the browser screen */
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* add this to the HTML to hide class on page load */
+.hide-initial {
+  visibility: hidden;
+}
+
+/* Or alternately, if starting with a displayed div, this will hide it (not working!) */
+.hide {
+  visibility: hidden;
+  -webkit-animation: fadeOut 1s;
+  animation: fadeOut 1s;
+}
+
+/* Add animation (fade in the div, and then show it) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* Add animation (fade out the div, and then hide it) - not tested */
+@-webkit-keyframes fadeOut {
+  from {opacity: 1; visibility: visible;} 
+  to {opacity: 0; visibility: hidden;}
+}
+
+@keyframes fadeOut {
+  from {opacity: 1; visibility: visible;}
+  to {opacity: 0; visibility: hidden;}
+}
