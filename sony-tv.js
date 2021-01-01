@@ -38,21 +38,8 @@
 let SONY_TV_IP = ''; // updated from local storage
 let SONY_TV_PRESHARED_KEY = '';
 // Default list of channels to show as quick-access channel command buttons
-// Format of each button is command-or-channel-number : button-name\n
-const DEFAULT_COMMAND_BUTTONS = `
-2.1 Enter : PBS 2
-4.1 Enter : CBS 4
-5.1 Enter : ABC 5
-7.2 Enter : this 7
-15.2 Enter : Cozi
-25.3 Enter : LAFF
-27.1 Enter : Uni 27
-38.1 Enter : MyTV 38
-38.3 Enter : Comet
-56.1 Enter : CW 56
-58.1 Enter : IonLife
-66.2 Enter : Bounce
-`;
+// Format of each button is command-or-channel-number enter : button-name\n
+const DEFAULT_COMMAND_BUTTONS = ``;
 // While console.log, warn, etc are used liberally, messages to the user
 // are limited by MESSAGE_LEVEL setting. These are messages displayed in
 // a popup (temporarily) div on the page.
@@ -233,7 +220,7 @@ COMMAND_MAP['Num0'] = 'AAAAAQAAAAEAAAAJAw==';
 COMMAND_MAP['Num11'] = 'AAAAAQAAAAEAAAAKAw==';
 COMMAND_MAP['Num12'] = 'AAAAAQAAAAEAAAALAw==';
 COMMAND_MAP['Enter'] = 'AAAAAQAAAAEAAAALAw==';
-COMMAND_MAP['GGuide'] = 'AAAAAQAAAAEAAAAOAw==';
+COMMAND_MAP['Guide'] = 'AAAAAQAAAAEAAAAOAw==';
 COMMAND_MAP['ChannelUp'] = 'AAAAAQAAAAEAAAAQAw==';
 COMMAND_MAP['ChannelDown'] = 'AAAAAQAAAAEAAAARAw==';
 COMMAND_MAP['VolumeUp'] = 'AAAAAQAAAAEAAAASAw==';
