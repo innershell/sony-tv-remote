@@ -3,4 +3,4 @@ Options +Indexes
 
 RewriteEngine On
 RewriteCond %{HTTPS} on
-RewriteRule ^(.*)$ http://innershell.ca/sony/ [R=301,L]
+RewriteRule ^(.*)$ http://sony.innershell.ca [R=301,L]
