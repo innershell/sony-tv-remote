@@ -1,0 +1,6 @@
+DirectoryIndex index.html
+Options +Indexes
+
+RewriteEngine On
+RewriteCond %{HTTPS} on
+RewriteRule ^(.*)$ http://innershell.ca/sony/ [R=301,L]

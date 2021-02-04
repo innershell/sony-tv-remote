@@ -9,19 +9,19 @@
     "scripts": ["background.js"]
   },
   "icons": [{
-    "src": "images/tv-icon-120.png",
+    "src": "images/120.png",
     "sizes": "120x120",
     "type": "image/png"
   }, {
-    "src": "images/tv-icon-128.png",
+    "src": "images/128.png",
     "sizes": "128x128",
     "type": "image/png"
   }, {
-    "src": "images/tv-icon-256.png",
+    "src": "images/256.png",
     "sizes": "256x256",
     "type": "image/png"
   }, {
-    "src": "images/tv-icon-512.png",
+    "src": "images/512.png",
     "sizes": "512x512",
     "type": "image/png"
   }],
