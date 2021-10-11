@@ -39,7 +39,10 @@ let SONY_TV_IP = ''; // updated from local storage
 let SONY_TV_PRESHARED_KEY = '';
 // Default list of channels to show as quick-access channel command buttons
 // Format of each button is command-or-channel-number enter : button-name\n
-const DEFAULT_COMMAND_BUTTONS = ``;
+const DEFAULT_COMMAND_BUTTONS = `
+
+
+`;
 // While console.log, warn, etc are used liberally, messages to the user
 // are limited by MESSAGE_LEVEL setting. These are messages displayed in
 // a popup (temporarily) div on the page.
@@ -551,8 +554,7 @@ function onLoadFunction() {
   restoreTVSetup();
 
   document.getElementById(ID_TV_SETUP).addEventListener('submit', saveTVSetup);
-  document.getElementById(ID_TV_COMMAND_INPUT).addEventListener('submit',
-    textCommand);
+  document.getElementById(ID_TV_COMMAND_INPUT).addEventListener('submit', textCommand);
 
   POPUP_TEXT_ELEMENT = document.getElementById(ID_POPUP_TEXT);
 
