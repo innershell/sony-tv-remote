@@ -1,5 +1,6 @@
-# sony-tv-remote
-Sony TV Web Page Remote Control
+# Sony TV Web Page (PWA) Remote Control
+
+![Sony TV Remote Screenshot](/images/sony-tv-remote-screen.png)
 
 ## Web Page based Sony Remote Control
 
