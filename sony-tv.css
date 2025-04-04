@@ -1,7 +1,64 @@
-/**
- * Sony TV Web Page Remote
- * CSS3 and uses flexbox for columns/row table-like button layout.
- */
+/* General Styles */
+body {
+  background: #1f1f1f;
+  margin: 20px 5px;
+  color: rgb(100, 100, 100);
+  max-width: 380px;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-align: center;
+  touch-action: manipulation;
+}
+
+h1 {
+  font-size: 1em;
+}
+
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  padding: 0.5rem 0.5rem;
+  margin: 8px 0;
+  color: #01c079;
+  background: #1f1f1f;
+  border: 1px solid #00472d;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 0.8rem;
+}
+
+button {
+  /* this also helps on narrow width displays when the buttons are stacked */
+  display: inline-block;
+  text-decoration: none;
+  font-size: 1rem;
+  color: #fff;
+  background: #01c079;
+  border: none;
+  border-radius: 25px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+button:active {
+  background: rgb(85, 85, 85); /* For browsers that do not support gradients */
+  box-shadow: none;
+  border: none;
+}
+
+.hr {
+  background-color: black;
+  margin: 10px 0;
+  width: 100%;
+  height: 5px;
+  box-shadow: -1px -1px 1px 2px rgb(34, 34, 34) inset;
+}
+
+.section {
+  margin: 15px 0;
+}
 
 .columns {
   display: flex;
@@ -20,95 +77,73 @@
   flex-basis: 33%; /* 1/3 * (100 - margin-left*3 - margin-right*3) */
   margin: 5px auto; /* Add some space around left/right edges of each item */
   text-align: center;
+  /* flex-direction: column; */
+  row-gap: 10px;
 }
 
-.columns .one-third-item-left {
-  flex-basis: 33%; /* 1/3 * (100 - margin-left*3 - margin-right*3) */
-  margin: 5px auto; /* Add some space around left/right edges of each item */
-  text-align: left;
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 12px;
+  column-gap: 6px;
+  width: 100%;
 }
 
-.columns .one-third-item-right {
-  flex-basis: 33%; /* 1/3 * (100 - margin-left*3 - margin-right*3) */
-  margin: 5px auto; /* Add some space around left/right edges of each item */
-  text-align: right;
+.grid-4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  row-gap: 12px;
+  column-gap: 6px;
+  width: 100%;
 }
 
-.columns .one-half-item {
-  flex-basis: 47%; /* 1/2 * (100 - margin-left*2 - margin-right*2) */
-  margin: 5px 2px; /* Add some space around left/right edges of each item */
-  text-align: center;
+.grid-5 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  row-gap: 6px;
+  column-gap: 6px;
+  width: 100%;
+}
+
+.left {
+  justify-content: start;
+}
+
+.middle {
+  justify-content: center;
+  margin: auto;
+}
+
+.right {
+  justify-content: end;
+  margin-left: auto;
+}
+
+.top {
+  align-items: start;
+}
+
+.sandwich {
+  align-items: center;
+  margin: auto;
+}
+
+.bottom {
+  margin-top: auto;
+  align-items: end;
 }
 
 label textarea {
   vertical-align: middle;
 }
 
-body {
-  background: #1f1f1f;
-  margin: 20px 5px;
-  color: rgb(100, 100, 100);
-  max-width: 19em;
-  margin: 0 auto;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  text-align: center;
-  touch-action: manipulation;
-}
-
-h1 {
-  font-size: 1em;
-}
-
-input[type=text], textarea, select {
-  width: 100%;
-  padding: 0.5rem 0.5rem;
-  margin: 8px 0;
-  /* display: inline-block; */
-  color: #01C079;
-  background: #1f1f1f;
-  border: 1px solid #00472d;
-  border-radius: 4px;
-  box-sizing: border-box;
-  font-size: 0.8rem;
-}
-
 #tab-buttons-content {
   margin-left: 3px;
 }
 
-button {
-  /* this also helps on narrow width displays when the buttons are stacked */
-  display: inline-block;
-  text-decoration: none;
-  font-size: 1rem;
-  color: #fff;
-  background: #01C079;
-  border: none;
-  border-radius: 25px;
-  padding: 0.5rem 1rem;
-}
-
-button:active {
-  background: rgb(85, 85, 85); /* For browsers that do not support gradients */
-  box-shadow: none;
-  border: none;
-}
-
-hr {
-  border: 3px solid rgb(255, 0, 212);
-}
-
-.hr {
-  background-color: black;
-  margin: 10px 0;
-  width: 100%;
-  height: 5px;
-  box-shadow: -1px -1px 1px 2px rgb(34, 34, 34) inset;
-}
-
 .brand_name {
   margin: 7px 0 0 0;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-weight: bold;
   font-size: 1em;
 }
@@ -116,8 +151,12 @@ hr {
 .equipment_name {
   margin: 3px 25px 0 25px;
   color: black;
-  background: #797D7F;
+  background: #797d7f;
   font-size: 0.7em;
+}
+
+.app_icon {
+  width: 100%;
 }
 
 /**
@@ -130,11 +169,11 @@ hr {
   border-radius: 25px;
   padding: 10px 0 6px 0;
   display: inline-block;
-  font-size: 1.0em;
+  font-size: 1em;
   font-weight: bold;
   text-decoration: none;
   /* this also helps on narrow width displays when the buttons are stacked */
-  width: 6em; /* default width */
+  width: 100%;
   background: #333; /* For browsers that do not support gradients */
   color: white;
   /* background: linear-gradient(#aac, #aaf); */
@@ -142,7 +181,7 @@ hr {
 }
 
 .btn_power {
-  background: #01C079;
+  background: #01c079;
   border-radius: 6em;
   color: white;
   width: 50px;
@@ -162,11 +201,18 @@ hr {
   font-size: 0.7em;
 }
 
+.btn_app {
+  border-radius: 15px;
+  aspect-ratio: 1;
+  padding: 0;
+  overflow: hidden;
+}
+
 .btn_googletv {
   background: red;
   color: white;
   width: 95%;
-  font-size: 1.1  em;
+  font-size: 1.1 em;
   border-radius: 15px;
   height: 55px;
   padding: 6px 0 10px 0;
@@ -188,15 +234,13 @@ hr {
   height: 35px;
 }
 
-.btn_joystick_center {
-  margin: 12px 0 0 0;
+.btn_joystick_confirm {
   padding: 4px 0 0 1px;
   width: 35px;
   height: 35px;
 }
 
 .btn_joystick_arrow {
-  margin: 4px 0;
   padding: 8px 3px 5px 3px;
   width: 60px;
   height: 50px;
@@ -205,7 +249,7 @@ hr {
 
 .btn_back {
   font-size: 0.8em;
-  color: #5086BF;
+  color: #5086bf;
   padding: 6px 10px 5px 10px;
   border-radius: 5px;
   width: 60px;
@@ -251,6 +295,20 @@ hr {
   font-style: normal;
 }
 
+.app-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  list-style-type: none;
+  row-gap: 10px;
+  padding-inline-start: 0;
+}
+
+.app-list > li {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  align-items: center;
+}
 
 /* Custom command sequence input box */
 #tv-command-input fieldset {
@@ -314,7 +372,6 @@ ul.tabs-navigation {
   background-color: rgb(54, 54, 54);
 }
 
-
 /* Change the link color to on hover */
 
 .tabs-navigation li a:focus,
@@ -372,22 +429,42 @@ ul.tabs-navigation {
 
 /* Add animation (fade in the div, and then show it) */
 @-webkit-keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Add animation (fade out the div, and then hide it) - not tested */
 @-webkit-keyframes fadeOut {
-  from {opacity: 1; visibility: visible;} 
-  to {opacity: 0; visibility: hidden;}
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 @keyframes fadeOut {
-  from {opacity: 1; visibility: visible;}
-  to {opacity: 0; visibility: hidden;}
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
 }

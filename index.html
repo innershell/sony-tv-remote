@@ -19,33 +19,6 @@
 
 <body>
   <br>
-  <!-- =================================================================
-     Sony TV Web Page Remote
-     Uses Sony Bravia TV IRCC (IR like control commands) sent using HTTP POST.
-
-     This web page used the script file to display a set of buttons that
-     when clicked send a command to the TV.
-
-     Since this has to send a Javascript request to a different IP address,
-     it MAY run afoul of same origin policy restrictions. But there seem to be
-     edge conditions if the web page is saved locally and accessed using
-     file:// URL which then uses Javascript to POST to http:// URL, it works
-     fine in latest Chrome, Firefox (Jan 2017).
-     In any case, if that fails, here are the options:
-     1: Change this script to use node.js or server side scripting which
-     does not run afoul of same origin policy.
-     2: Load this as a Web Extension which asks for permissions to access
-     remote URLs, so avoids cross origin policy cross-domain restrictions.
-
-     Works on Chrome, Firefox, Edge.
-
-     Requires Javascript ES2015 (ES6). Works with most browsers in 2020.
-     Uses localStorage, for of loop, etc.
-
-     There are a number of similar tools available - from command line
-     scripts to server side Javascript. Use a web search such as "Sony
-     TV IRCC" to find references.
-  ================================================================= -->
   <ul class="tabs-navigation">
     <!-- id of links must be same id as tab, with -link replaced by -content.
          Ex: tab-buttons-link and tab-buttons-content -->
@@ -53,270 +26,175 @@
     <li class="tab-link" id="tab-setup-link"><a>TV Setup</a> </li>
     <li class="tab-link" id="tab-help-link"><a>Help</a> </li>
   </ul>
+
   <!-- display error/status messages on a popup, usually centered on browser page using css -->
   <div class="popup-text hide-initial" id="popup-text">Sony TV Remote Control</div>
   <br>
+
   <div class="tabs-all-content">
     <div class="tab-content" id="tab-buttons-content">
-
       <!-- Power -->
-      <div class="columns" id="tv-power">
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_settings" data-stv.commands="ActionMenu"><i
-              class="material-icons">settings</i></button>
-        </div>
-        <div class="one-third-item">
+      <div class="grid-3 section" id="tv-power">
+        <button type="button" class="tv-command btn_settings" data-command="ActionMenu"><i
+            class="material-icons">settings</i></button>
+        <div class="">
           <div class="brand_name">SONY</div>
           <div class="equipment_name">TV</div>
         </div>
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_power" data-stv.commands="TvPower"><i
-              class="material-icons">power_settings_new</i></button>
-        </div>
+        <button type="button" class="tv-command btn_power right" data-command="TvPower"><i
+            class="material-icons">power_settings_new</i></button>
       </div>
-      <div class="hr"></div>
-
+      <!-- Power -->
 
       <!-- Input -->
-      <div class="columns" id="tv-input">
-        <div class="one-fourth-item">
-          <button type="button" class="tv-command btn_input" data-stv.commands="Hdmi1">HDMI 1</button>
-        </div>
-        <div class="one-fourth-item">
-          <button type="button" class="tv-command btn_input" data-stv.commands="Hdmi2">HDMI 2</button>
-        </div>
-        <div class="one-fourth-item">
-          <button type="button" class="tv-command btn_input" data-stv.commands="Hdmi3">HDMI 3</button>
-        </div>
-        <div class="one-fourth-item">
-          <button type="button" class="tv-command btn_input" data-stv.commands="Hdmi4">HDMI 4</button>
-        </div>
+      <div class="grid-4 section" id="tv-input">
+        <button type="button" class="tv-command btn_input" data-command="Hdmi1">HDMI 1</button>
+        <button type="button" class="tv-command btn_input" data-command="Hdmi2">HDMI 2</button>
+        <button type="button" class="tv-command btn_input" data-command="Hdmi3">HDMI 3</button>
+        <button type="button" class="tv-command btn_input" data-command="Hdmi4">HDMI 4</button>
       </div>
-      <div class="hr"></div>
+      <!-- Input -->
 
       <!-- Smart TV -->
-      <div class="columns" id="tv-input-apps">
-        <div class="one-half-item">
-          <button type="button" class="tv-command btn_googletv" data-stv.commands="Home"><i
-              class="material-icons">bubble_chart</i>Google TV</button>
-        </div>
-        <div class="one-half-item">
-          <button type="button" class="tv-command btn_netflix" data-stv.commands="Netflix">NETFLIX</button>
-        </div>
+      <div class="grid-5 section" id="tv-apps">
+        <button type="button" class="tv-command btn_app" data-command="Home"><i
+            class="material-icons">bubble_chart</i>
+        </button>
+        <button type="button" class="tv-command btn_app" data-command="Netflix">
+          <img class="app_icon" src="http://10.0.0.108/DIAL/icon/com.sony.dtv.com.netflix.ninja.com.netflix.ninja.MainActivity.png" />
+        </button>
+        <button type="button" class="tv-command btn_app" data-command="Disney">
+          <img class="app_icon" src="http://10.0.0.108/DIAL/icon/com.sony.dtv.com.disney.disneyplus.com.bamtechmedia.dominguez.main.MainActivity.png" />
+        </button>
+        <button type="button" class="tv-command btn_app" data-command="Crave">
+          <img class="app_icon" src="http://10.0.0.108/DIAL/icon/com.sony.dtv.ca.bellmedia.cravetv.axis.androidtv.sdk.app.MainActivity.png" />
+        </button>
+        <button type="button" class="tv-command btn_app" data-command="Prime">
+          <img class="app_icon" src="http://10.0.0.108/DIAL/icon/com.sony.dtv.com.amazon.amazonvideo.livingroom.com.amazon.ignition.IgnitionActivity.png" />
+        </button>
+        <button type="button" class="tv-command btn_app" data-command="Apps"><i
+            class="material-icons">menu</i>
+        </button>
       </div>
+      <!-- Smart TV -->
+
       <div class="hr"></div>
 
-      <!-- Volume -->
-      <div class="columns" id="tv-vol-ch">
-        <div class="one-third-item">
-          <span>VOL</span>
-        </div>
-        <div class="one-third-item">
-        </div>
-        <div class="one-third-item">
-          <span>CH</span>
-        </div>
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_vol_ch" data-stv.commands="VolumeUp"><i
-              class="material-icons">volume_up</i></button>
-        </div>
-        <div class="one-third-item"></div>
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_vol_ch" data-stv.commands="ChannelUp"><i
-              class="material-icons">add</i></button>
-        </div>
-        <div class="one-third-item"></div>
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_mute" data-stv.commands="Mute"><i
-              class="material-icons">volume_off</i></button>
-        </div>
-        <div class="one-third-item"></div>
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_vol_ch" data-stv.commands="VolumeDown"><i
-              class="material-icons">volume_down</i></button>
-        </div>
-        <div class="one-third-item"></div>
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_vol_ch" data-stv.commands="ChannelDown"><i
-              class="material-icons">remove</i></button>
-        </div>
+      <!-- Volume/Channel -->
+      <div class="grid-3 section" id="tv-vol-ch">
+        <span>VOL</span>
+        <span></span>
+        <span>CH</span>
+        <button type="button" class="tv-command btn_vol_ch" data-command="VolumeUp"><i
+            class="material-icons">volume_up</i></button>
+        <button type="button" class="tv-command btn_mute middle" data-command="Mute"><i
+            class="material-icons">volume_off</i></button>
+        <button type="button" class="tv-command btn_vol_ch" data-command="ChannelUp"><i
+            class="material-icons">add</i></button>
+        <button type="button" class="tv-command btn_vol_ch" data-command="VolumeDown"><i
+            class="material-icons">volume_down</i></button>
+        <span></span>
+        <button type="button" class="tv-command btn_vol_ch" data-command="ChannelDown"><i
+            class="material-icons">remove</i></button>
       </div>
-      <div class="hr"></div>
+      <!-- Volume/Channel -->
 
+      <div class="hr"></div>
 
       <!-- Joystick -->
-      <div class="columns" id="tv-joystick">
-        <div class="one-third-item"></div>
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_joystick_arrow" data-stv.commands="Up"><i
-              class="material-icons">keyboard_arrow_up</i></button>
-        </div>
-        <div class="one-third-item"></div>
-        <div class="one-third-item-right">
-          <button type="button" class="tv-command btn_joystick_arrow" data-stv.commands="Left"><i
-              class="material-icons">keyboard_arrow_left</i></button>
-        </div>
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_joystick_center" data-stv.commands="DpadCenter"><i
-              class="material-icons">blur_on</i></button>
-        </div>
-        <div class="one-third-item-left">
-          <button type="button" class="tv-command btn_joystick_arrow" data-stv.commands="Right"><i
-              class="material-icons">keyboard_arrow_right</i></button>
-        </div>
-        <div class="one-third-item"></div>
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_joystick_arrow" data-stv.commands="Down"><i
-              class="material-icons">keyboard_arrow_down</i></button>
-        </div>
-        <div class="one-third-item"></div>
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_back" data-stv.commands="Return">BACK</button>
-        </div>
-        <div class="one-third-item"></div>
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_tv" data-stv.commands="Tv">EXIT</button>
-        </div>
-      </div>
-      <div class="hr"></div>
+      <div class="grid-3" id="tv-joystick">
+        <!-- Top Row -->
+        <div></div>
+        <button type="button" class="tv-command btn_joystick_arrow middle" data-command="Up"><i
+            class="material-icons">keyboard_arrow_up</i></button>
+        <div></div>
 
-      <!-- Numbers -->
-      <div class="columns" id="tv-numbers-row">
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_numbers" data-stv.commands="Num1">1</button>
-        </div>
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_numbers" data-stv.commands="Num2">2</button>
-        </div>
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_numbers" data-stv.commands="Num3">3</button>
-        </div>
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_numbers" data-stv.commands="Num4">4</button>
-        </div>
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_numbers" data-stv.commands="Num5">5</button>
-        </div>
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_numbers" data-stv.commands="Num6">6</button>
-        </div>
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_numbers" data-stv.commands="Num7">7</button>
-        </div>
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_numbers" data-stv.commands="Num8">8</button>
-        </div>
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_numbers" data-stv.commands="Num9">9</button>
-        </div>
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_numbers " data-stv.commands="DOT">.</button>
-        </div>
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_numbers" data-stv.commands="Num2">0</button>
-        </div>
-        <div class="one-third-item">
-          <button type="button" class="tv-command btn_display" data-stv.commands="Display">DISPLAY</button>
-        </div>
+        <!-- Middle Row -->
+        <button type="button" class="tv-command btn_joystick_arrow right" data-command="Left"><i
+            class="material-icons">keyboard_arrow_left</i></button>
+        <button type="button" class="tv-command btn_joystick_confirm middle" data-command="Confirm"><i
+            class="material-icons">blur_on</i></button>
+        <button type="button" class="tv-command btn_joystick_arrow left" data-command="Right"><i
+            class="material-icons">keyboard_arrow_right</i></button>
+
+
+        <!-- Bottom row -->
+        <button type="button" class="tv-command btn_back middle" data-command="Return">BACK</button>
+        <button type="button" class="tv-command btn_joystick_arrow middle" data-command="Down"><i
+            class="material-icons">keyboard_arrow_down</i></button>
+        <button type="button" class="tv-command btn_tv middle" data-command="Tv">EXIT</button>
       </div>
+      <!-- Joystick -->
+
       <div class="hr"></div>
 
       <!-- Playback Controls -->
-      <div class="columns" id="tv-ffrw">
-        <div class="one-fourth-item">
-          <button type="button" class="tv-command btn_playback" data-stv.commands="Rewind"><i
-              class="material-icons">fast_rewind</i></button>
-        </div>
-        <div class="one-fourth-item">
-          <button type="button" class="tv-command btn_playback" data-stv.commands="Play"><i
-              class="material-icons">play_arrow</i></button>
-        </div>
-        <div class="one-fourth-item">
-          <button type="button" class="tv-command btn_playback" data-stv.commands="Forward"><i
-              class="material-icons">fast_forward</i></button>
-        </div>
-        <div class="one-fourth-item">
-          <button type="button" class="tv-command btn_playback" data-stv.commands="Pause"><i
-              class="material-icons">pause</i></button>
-        </div>
-        <div class="one-fourth-item"><button type="button" class="tv-command btn_playback" data-stv.commands="Prev"><i
-              class="material-icons">skip_previous</i></button></div>
-        <div class="one-fourth-item">
-          <button type="button" class="tv-command btn_playback" data-stv.commands="Stop"><i
-              class="material-icons">stop</i></button>
-        </div>
-        <div class="one-fourth-item"><button type="button" class="tv-command btn_playback" data-stv.commands="Next"><i
-              class="material-icons">skip_next</i></button></div>
-        <div class="one-fourth-item"></div>
+      <div class="grid-4 section" id="tv-ffrw">
+        <button type="button" class="tv-command btn_playback middle" data-command="FlashMinus"><i
+            class="material-icons">fast_rewind</i></button>
+        <button type="button" class="tv-command btn_playback middle" data-command="Play"><i
+            class="material-icons">play_arrow</i></button>
+        <button type="button" class="tv-command btn_playback middle" data-command="FlashPlus"><i
+            class="material-icons">fast_forward</i></button>
+        <button type="button" class="tv-command btn_playback middle" data-command="Pause"><i
+            class="material-icons">pause</i></button>
+        <button type="button" class="tv-command btn_playback middle" data-command="Prev"><i
+            class="material-icons">skip_previous</i></button>
+        <button type="button" class="tv-command btn_playback middle" data-command="Stop"><i
+            class="material-icons">stop</i></button>
+        <button type="button" class="tv-command btn_playback middle" data-command="Next"><i
+            class="material-icons">skip_next</i></button>
       </div>
       <div class="hr"></div>
+      <!-- Playback Controls -->
 
-
-      <!-- Frequently Used -->
-      <div class="columns" id="tv-volume">
-        <!-- Command input text box -->
-        <form id="tv-command-input">
-          <!-- put content one-fourth-item inside form otherwise fieldset border has too much
-               padding on right, and border around fieldset looks weird -->
-          <div class="one-fourth-item">
-            <fieldset>
-              <input type="text" id="tv-input-1" autocorrect="off" autocapitalize="none" spellcheck="false"
-                placeholder="Ex: 7.1">
-              <button type="submit" class="tv-command btn_send">Send</button>
-            </fieldset>
-          </div>
-        </form>
+      <!-- Numbers -->
+      <div class="grid-3 section" id="tv-numbers-row">
+        <button type="button" class="tv-command btn_numbers middle" data-command="Num1">1</button>
+        <button type="button" class="tv-command btn_numbers middle" data-command="Num2">2</button>
+        <button type="button" class="tv-command btn_numbers middle" data-command="Num3">3</button>
+        <button type="button" class="tv-command btn_numbers middle" data-command="Num4">4</button>
+        <button type="button" class="tv-command btn_numbers middle" data-command="Num5">5</button>
+        <button type="button" class="tv-command btn_numbers middle" data-command="Num6">6</button>
+        <button type="button" class="tv-command btn_numbers middle" data-command="Num7">7</button>
+        <button type="button" class="tv-command btn_numbers middle" data-command="Num8">8</button>
+        <button type="button" class="tv-command btn_numbers middle" data-command="Num9">9</button>
+        <button type="button" class="tv-command btn_numbers middle " data-command="Decimal">.</button>
+        <button type="button" class="tv-command btn_numbers middle" data-command="Num0">0</button>
+        <button type="button" class="tv-command btn_display middle" data-command="Display">DISPLAY</button>
       </div>
-      <div class="hr"></div>
-      <!-- Command input text box
-      <form id="tv-command-input">
-        <fieldset>
-          <legend>Type-in Commands</legend>
-          <input type="text" id="tv-input-1" autocorrect="off" autocapitalize="none" spellcheck="false" placeholder="Example: 7.1">
-          <button type="submit" class="tv-command">Send</button>
-        </fieldset>
-      </form>
-      <hr>
-      -->
-      <!-- Channel Numbers / Custom Buttons -->
-      <!-- these child elements are dynamically created based on user setup options -->
-      <div class="columns" id="tv-channel-numbers">
-      </div>
-      <br><br>
-
-      <br><br>
-
-
+      <!-- Numbers -->
     </div>
     <!-- tab-buttons-content -->
-    <!-- Setup -->
+
+    <!-- Setup Tab -->
     <div class="tab-content" id="tab-setup-content">
       <h2>TV Setup</h2>
       <form id="tv-setup">
         <fieldset>
           <p>
-            <label for="tv-ip-address">Sony TV IP Address</label>
+            <label for="tv-ip-address">TV IP Address</label>
             <input type="text" id="tv-ip-address" autocorrect="off" autocapitalize="none" spellcheck="false"
-              placeholder="Example: 10.0.0.108">
+              placeholder="10.0.0.108">
           </p>
           <p>
-            <label for="tv-key">Sony TV Pre-Shared Key</label>
+            <label for="tv-key">TV Pre-Shared Key (PSK)</label>
             <input type="text" id="tv-key" autocorrect="off" autocapitalize="none" spellcheck="false"
-              placeholder="Example: 6708">
+              placeholder="6708">
           </p>
           <p>
-            <label for="make-custom-buttons">Custom Command : Channel Name
-              <textarea id="make-custom-buttons" autocorrect="off" autocapitalize="none" spellcheck="false"
-                rows="14"></textarea>
-            </label>
+            <label>Installed Apps</label>
           </p>
-          <button type="submit">Save</button>
+          <ul id="installed-apps-list" class="app-list"></ul>
+          <button type="button" id="tv-installed-apps">Fetch</button>
         </fieldset>
       </form>
       <p class="messages"></p>
       <!-- Javascript error or status message -->
     </div>
-    <!-- Help and About -->
+    <!-- Setup Tab -->
+
+    <!-- Help Tab -->
     <div class="tab-content" id="tab-help-content">
       <h2>About</h2>
       <h3>Sony TV Web Page Remote Control</h3>
@@ -350,21 +228,8 @@
         in this document.
         <br> Each button should be defined on a single line. Example format is:
       </p>
-      <pre>
-2.1 Enter : PBS 2
-4.1 Enter : CBS 4
-4.1 Enter : CBS 4
-Netflix Confirm : Netflix
-TvInput Confirm : TV
-...
-        </pre>
-      <p>Where the <code> : </code> (space colon space) separates the TV commands
-        number from the button name. A channel number can also be used as a command.<br>
-        <br> This will create a button for each channel or command.
-      </p>
-      <p>After all data is entered, click Save.
-        <br> Once that is done, the buttons on the page can be used to send commands.
-      </p>
+
+
       <p>
         All data is saved locally, there is no information sent back to the web server.
         <br> This maintains user privacy. The data is stored by the local browser, so it can
@@ -389,51 +254,23 @@ TvInput Confirm : TV
         this will only work if your web browser is able to access both this web page and
         your TV.
         <br> The web browser can be on a computer, a smartphone, or a tablet.
-        <a href="http://www.aczoom.com/tools/sony-tv-remote/sony-tv.html">online
-          Sony TV Web Remote at aczoom.com</a>.
       </p>
       <p> If the On button is not working from this web page, it indicates that the TV
         has some power saving mode set. In this case, change the [Settings] [Power] Eco
         mode using the TV remote.
         Or always use the physical remote to turn on the TV.
-        <br> See this message thread for the issue related to WOL messages:
-        <a href="https://github.com/avinash311/sony-tv-remote/issues/1">TVPower
-          does not work</a>.
       </p>
       <p>If more customization of the Buttons page is needed, the entire source code
         for this package is available for local download and editing. This may be useful
         if you wish to hardcode the Setup details on the web page, so everyone in your
         household can visit your modified web page and immediately start using the buttons.
-        <br> Download source code and web page as a ZIP archive: <a
-          href="https://github.com/avinash311/sony-tv-remote/archive/master.zip">sony-tv-remote-master.zip</a> and
-        unpack
-        it locally. Rename the folder if needed, and edit the HTML or Javascript files.
-        Then load the <code>sony-tv.html</code> in your browser (Firefox or Chrome only).
       </p>
-      <p>For additional details, visit the home page and the source codes, available at:
-        <br> Browse source code online: <a href="https://github.com/avinash311/sony-tv-remote">Sony TV Web Page Remote
-          source code</a>
-      </p>
-      <a name="tv-commands">
-        <h2>TV Info (Commands)</h2>
-      </a>
-      <p>Here's a way to see all the Command names and IRCC codes supported by the TV.
-        It seems all Sony Bravia TVs return the same set of codes. This can be used to
-        confirm it, if needed by comparing this output to the COMMAND_MAP Javascript variable in the
-        code. This button works even if the TV is off (as long as it is plugged in). The entries
-        such as <code>{"name":"Hdmi2","value":"AAAAAgAAABoAAABbAw=="}</code> show the command name
-        and the value which indicates the IRCC code.
-      </p>
-      <p>In addition the commands here, this interface also accepts channel numbers as commands
-        such as <em>38.1</em> and such.</p>
-      <div id="controller-info">
-        <button type="button" id="controller-info-button">Get TV Remote Controller Info</button>
-        <div id="controller-info-output">(Remote Controller Info will show up here.)</div>
-      </div>
-    </div> <!-- tab-help-content -->
+    </div>
+    <!-- tab-help-content -->
+
   </div> <!-- tabs-all-content -->
   <!-- End Document =============================================== -->
-  <script src="sony-tv.js"></script>
+  <script src="sony-tv-rest.js"></script>
 </body>
 
 </html>
